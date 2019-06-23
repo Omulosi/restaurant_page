@@ -1,57 +1,62 @@
 
-import { loadPage } from './page_load.js';
-import { loadMenuPage } from './menu.js';
-import { loadContactPage } from './contact.js';
+import homePage from './home.js';
+import menuPage from './menu.js';
+import contactPage from './contact.js';
 
-const renderPage = () => {
-	loadPage();
-
-	let menuTab = document.querySelector('#menuNav');
-	let contactTab = document.querySelector('#contactNav');
-	let home = document.querySelector('#home');
-	let content = document.querySelector('#content');
-
-	menuTab.addEventListener('click', function activatePage(){
-		contactTab.classList.remove('active');
-		contactTab.removeEventListener('click', activatePage);
-
-		while (content.firstChild){
-				content.removeChild(content.firstChild);
-			}
-
-		loadMenuPage();
-		menuTab.classList.add('active');
-	})
-
-	contactTab.addEventListener('click', function activatePage(){
-		menuTab.classList.remove('active');
-		menuTab.removeEventListener('click', activatePage);
-
-		while (content.firstChild){
-				content.removeChild(content.firstChild);
-			}
-
-		loadContactPage();
-		contactTab.classList.add('active');
-	
-	})
-
-	home.addEventListener('click', () => {
-
-		let header = document.querySelector('header');
-		let footer = document.querySelector('footer');
-		header.remove();
-		footer.remove();
-
-		while (content.firstChild){
-				content.removeChild(content.firstChild);
-			}
-
-		renderPage();
-
-	})
-
-
+const deleteContent = () => {
+	// delete page content
+    let content = document.querySelector('#content');
+	while (content.firstChild){
+		content.removeChild(content.firstChild);
+	}
 }
 
-renderPage();
+function loadPage(page){
+    page();
+
+    let menu = document.querySelector('.menu');
+    let home = document.querySelector('.home');
+    let contact = document.querySelector('.contact');
+
+    // Event listeners
+    menu.addEventListener('click', () => {
+        deleteContent();
+        loadPage(menuPage);
+
+        let menu = document.querySelector('.menu');
+        let home = document.querySelector('.home');
+        let contact = document.querySelector('.contact');
+
+        menu.classList.add('active');
+        home.classList.remove('active');
+        contact.classList.remove('active')
+    });
+
+    home.addEventListener('click', () => {
+        deleteContent();
+        loadPage(homePage);
+
+        let menu = document.querySelector('.menu');
+        let home = document.querySelector('.home');
+        let contact = document.querySelector('.contact');
+
+        home.classList.add('active');
+        menu.classList.remove('active');
+        contact.classList.remove('active')
+    });
+
+    contact.addEventListener('click', () => {
+        deleteContent();
+        loadPage(contactPage);
+
+        let menu = document.querySelector('.menu');
+        let home = document.querySelector('.home');
+        let contact = document.querySelector('.contact');
+
+        contact.classList.add('active');
+        home.classList.remove('active');
+        menu.classList.remove('active')
+    });
+};
+
+loadPage(homePage);

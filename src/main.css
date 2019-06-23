@@ -1,0 +1,101 @@
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	margin: 0 auto;
+	max-width: 80%;
+}
+
+.hero {
+	height: 40vh;
+	background-image: url('hero.jpg');
+	background-size: cover;
+	background-position: center center;
+}
+
+.hero img {
+	display: block;
+	width: 100%;
+}
+
+.active {
+	border-bottom: 3px solid #14acdd;
+}
+
+nav {
+	text-align: center;
+}
+
+nav ul {
+	list-style: none;
+}
+
+nav li {
+	display: inline-block;
+	margin: 0 0.7em;
+}
+
+nav a {
+	text-decoration: none;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #14acdd;
+}
+
+.main h1 {
+	text-align: center;
+	font-size: 1.7em;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding-top: 2em;
+	color: #c7dbfc;
+}
+
+.main p {
+	color: #56aaff;
+}
+
+.menu-list {
+	text-align: center;
+}
+
+.menu-list > div {
+	margin-top: 3em;
+}
+
+.name {
+	font-weight: bold;
+}
+
+.description {
+	font-style: italic;
+}
+
+.contact-form label,
+.contact-form input,
+.contact-form textarea {
+	display: block;
+	margin-top: 0.5em;
+	width: 100%;
+}
+
+.contact-form {
+	width: 40%;
+	margin: 0 auto;
+}
+
+.tag-line {
+	text-align: center;
+}
+
+input, 
+textarea {
+	padding: 4px;
+}
+
+textarea {
+	height: 15vh;
+}

@@ -1,41 +1,62 @@
+import navMenu from './navMenu.js';
 
-const loadContactPage = () => {
+function contactPage() {
 
-	let mainContainer = document.createElement('div');
-	mainContainer.classList.add('container', 'contact-page');
+    const hero = document.createElement("div");
+    const nav = document.createElement("nav");
+    const main = document.createElement("div");
 
-	let h1 = document.createElement('h1');
-	h1.textContent = 'Contact Us';
+    // add classes to elements
+    hero.classList.add("hero");
+    main.classList.add("main", "container")
 
-	let form = document.createElement('form');
+    // Navigation content
+    let navElems = navMenu();
 
-	let label1 = document.createElement('p');
-	label1.textContent = 'Email';
+    nav.appendChild(navElems);
 
-	let input1 = document.createElement('input');
-	input1.setAttribute('type', 'email');
+    // main content
+    const createInput = (name, type, placeholder) => {
+        let elem = document.createElement(name);
+        if (type) elem.setAttribute('type', type);
+        elem.setAttribute('placeholder', placeholder);
+        return elem;
+    }
+    const createLabel = (labelName) => {
+        let label = document.createElement('label');
+        label.innerHTML = labelName;
+        return label;
+    }
 
-	let label2 = document.createElement('p');
-	label2.textContent = 'Your Message';
+    let tagLine = `We'd like to hear from you`;
+    let tagLineElem = document.createElement('p');
+    tagLineElem.classList.add('tag-line');
+    tagLineElem.innerHTML = tagLine;
+    let contactForm = document.createElement('form');
+    contactForm.classList.add('contact-form');
 
+    let nameInput = createInput('input', 'text', 'Name');
+    let nameLabel = createLabel('Name');
+    let emailInput = createInput('input', 'email', 'Email');
+    let emailLabel = createLabel('Email');
+    let msgInput = createInput('textarea', '','Message');
+    let msgLabel = createLabel('Message');
 
-	let input2 = document.createElement('textarea');
+    contactForm.appendChild(nameLabel);
+    contactForm.appendChild(nameInput);
+    contactForm.appendChild(emailLabel);
+    contactForm.appendChild(emailInput);
+    contactForm.appendChild(msgLabel);
+    contactForm.appendChild(msgInput);
+    
+    main.appendChild(tagLineElem);
+    main.appendChild(contactForm);
 
-	let btn = document.createElement('input');
-	btn.classList.add('btn');
-	btn.setAttribute('type', 'submit');
-
-	form.appendChild(label1);
-	form.appendChild(input1);
-	form.appendChild(label2);
-	form.appendChild(input2);
-	form.appendChild(btn);
-
-	mainContainer.appendChild(h1);
-	mainContainer.appendChild(form);
-
-	let content = document.querySelector('#content');
-	content.appendChild(mainContainer);
+    // wire everything up
+    let content = document.querySelector('#content');
+    content.appendChild(hero)
+    content.appendChild(nav)
+    content.appendChild(main)
 }
 
-export { loadContactPage };
+export default contactPage
